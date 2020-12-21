@@ -6,10 +6,10 @@ import argparse
 from dropbox_file_uploader import DropboxUploader
 
 parser = argparse.ArgumentParser(description='Sync ~/Downloads to Dropbox')
-parser.add_argument('dropbox_folder', nargs='?', default='Downloads',
-                    help='Folder name in your Dropbox')
 parser.add_argument('local_folder', nargs='?', default='~/Downloads',
                     help='Local directory to upload')
+parser.add_argument('dropbox_folder', nargs='?', default='Downloads',
+                    help='Folder name in your Dropbox')
 parser.add_argument('--token', help='Access token '
                                     '(see https://www.dropbox.com/developers/apps)')
 
