@@ -63,7 +63,8 @@ class DropboxUploader:
                         else:
                             print(name, 'has changed since last sync')
                             self.upload(fullname, self.dropbox_folder, subfolder, name, overwrite=True)
-                self.upload(fullname, self.dropbox_folder, subfolder, name)
+                else:
+                    self.upload(fullname, self.dropbox_folder, subfolder, name)
 
             # Then choose which subdirectories to traverse.
             keep = []

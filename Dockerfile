@@ -5,7 +5,6 @@ WORKDIR /root
 RUN pip install -U -r requirements.txt
 
 VOLUME /data_upload
-ENV TOKEN=
 
-ENTRYPOINT python -u sync_dropbox.py --token $TOKEN /data_upload
-CMD FileBackup
+ENTRYPOINT ["python", "-u", "sync_dropbox.py", "/data_upload"]
+CMD ["FileBackup", "Token"]

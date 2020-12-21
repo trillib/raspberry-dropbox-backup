@@ -14,14 +14,15 @@ Be aware to set all the permissions and create the token again afterwards becaus
 
 Locally:
 ```
-python sync_dropbox --token <ACCESS_TOKEN> <LOCAL_DIRECTORY> <DROPBOX_DIRECTORY> 
+python sync_dropbox --token <ACCESS_TOKEN> <LOCAL_DIRECTORY> <DROPBOX_DIRECTORY> <TOKEN>
 ```
 
 With docker:
 ```
 docker build .
-docker run -e TOKEN=<TOKEN_NAME> -v <LOCAL_DIRECTORY>:/data_upload <IMAGE> <DROPBOX_FOLDER>
+docker run -v <LOCAL_DIRECTORY>:/data_upload <IMAGE> <DROPBOX_FOLDER> <TOKEN>
 ```
+
 
 ## To be implemented
 * Deletion of files
