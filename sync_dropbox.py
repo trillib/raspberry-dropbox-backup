@@ -11,7 +11,7 @@ parser.add_argument('dropbox_folder', nargs='?', default='Downloads',
 parser.add_argument('local_folder', nargs='?', default='~/Downloads',
                     help='Local directory to upload')
 parser.add_argument('--token', help='Access token '
-                    '(see https://www.dropbox.com/developers/apps)')
+                                    '(see https://www.dropbox.com/developers/apps)')
 
 
 class DropboxEventhandler(FileSystemEventHandler):
@@ -24,21 +24,23 @@ class DropboxEventhandler(FileSystemEventHandler):
     def on_modified(self, event):
         self.dropbox_uploader.sync()
 
-def main(argv=None):
+
+def main():
     args = parser.parse_args()
     local_folder = args.local_folder
     dropbox_folder = args.dropbox_folder
     token = args.token
+    print("starting")
 
     if not args.token:
         print('--token is mandatory')
         sys.exit(2)
 
     dropbox_uploader = DropboxUploader(token, dropbox_folder, local_folder)
-    
+
     event_handler = DropboxEventhandler(dropbox_uploader)
     observer = Observer()
-    observer.schedule(event_handler, './Demo', recursive=True)
+    observer.schedule(event_handler, local_folder, recursive=True)
     observer.start()
     try:
         while True:

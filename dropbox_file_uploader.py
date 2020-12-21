@@ -9,12 +9,13 @@ import unicodedata
 
 import dropbox
 
-class DropboxUploader():
-    
+
+class DropboxUploader:
+
     def __init__(self, token: str, dropbox_folder: str, local_folder: str):
         self.token = token
         self.dropbox_folder = dropbox_folder
-        self.local_folder = os.path.expanduser(local_folder) 
+        self.local_folder = os.path.expanduser(local_folder)
         self.dbx = dropbox.Dropbox(token)
 
     def sync(self):
@@ -72,16 +73,13 @@ class DropboxUploader():
                 elif name.startswith('@') or name.endswith('~'):
                     print('Skipping temporary directory:', name)
                 elif name == '__pycache__':
-                    print('Skipping generated directory:', name)                    
+                    print('Skipping generated directory:', name)
                 else:
                     keep.append(name)
                     print('OK, skipping directory:', name)
             dirs[:] = keep
 
         self.dbx.close()
-
-
-
 
     def list_folder(self, folder, subfolder):
         """List a folder.
@@ -104,7 +102,6 @@ class DropboxUploader():
                 rv[entry.name] = entry
             return rv
 
-
     def download(self, folder, subfolder, name):
         """Download a file.
         Return the bytes of the file, or None if it doesn't exist.
@@ -121,7 +118,6 @@ class DropboxUploader():
         data = res.content
         print(len(data), 'bytes; md:', md)
         return data
-
 
     def upload(self, fullname, folder, subfolder, name, overwrite=False):
         """Upload a file.
